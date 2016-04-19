@@ -6,7 +6,7 @@
 /*   By: noobax <nerdz78@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 21:55:22 by noobax            #+#    #+#             */
-/*   Updated: 2016/04/18 13:23:50 by noobax           ###   ########.fr       */
+/*   Updated: 2016/04/19 17:43:52 by noobax           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ int	ft_atoi(char *str)
 	return(res);
 }
 
-void	ft_print_map(char **str, int i, int j, int size, int end)
+void	ft_print_map(char **str, int i, int j, int size)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while(y < end)
+	while(*str[y])
 	{
 		x = 0;
-		while (str[y][x] != '\n')
+		while (str[y][x])
 		{
 			if (y >= j && y <= (j + size - 1) 
 				&& x >= i && x <= (i + size - 1))
@@ -55,7 +55,6 @@ void	ft_print_map(char **str, int i, int j, int size, int end)
 				ft_putchar(str[y][x]);
 			x++;
 		}
-		ft_putchar('\n');
 		y++;
 	}
 }

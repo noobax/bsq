@@ -9,7 +9,7 @@
 #include <fcntl.h>
 
 void	ft_putchar(char c);
-void	ft_print_map(char **str, int i, int j, int size, int end);
+void	ft_print_map(char **str, int i, int j, int size);
 int	ft_atoi(char *str);
 
 #endif

@@ -6,36 +6,34 @@
 /*   By: noobax <nerdz78@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/01 22:45:29 by noobax            #+#    #+#             */
-/*   Updated: 2016/04/18 13:23:47 by noobax           ###   ########.fr       */
+/*   Updated: 2016/04/19 17:43:37 by noobax           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 #define BUF_SIZE 4096
 
-int	ft_square_maker(char **str, int end, int i, int j)
+int	ft_square_maker(char **str, int i, int j)
 {
-	int	size;
 	int	x;
 	int	y;
+	int	size;
 	
-	end -= 1;
-	size = 0;
 	x = i;
 	y = j;
-	while (str[y][x] != 'o' && y < end && str[y][x] != '\n')
+	size = 0;
+	while (*str[y] && str[y][x + 2] && str[y][x] != 'o')
 	{
 		x = i + size;
 		y = j;
-		while (x != i && str[y][x] != 'o' && str[y][x] != '\n' 
-			&& y != end)
+		while (x != i && *str[y] && str[y][x + 2] && str[y][x] != 'o')
 		{
-			if (y < j + size)
+			if (y < (j + size))
 				y++;
 			else
 				x--;
 		}
-		if (str[y][x] != 'o' && str[y][x] != '\n')
+		if (str[y][x] != 'o')
 			size++;
 	}
 	return(size);
@@ -46,19 +44,20 @@ void	ft_scanner(char **map, int x, int y)
 	int	i;
 	int	j;
 	int	size;
-	int	end;
+	int	stock;
 
+	stock = 0;
 	size = 0;
-	end = y;
 	y = 0;
-	while (y < end)
+	while (*map[y])
 	{
 		x = 0;
-		while (map[y][x] != '\n')
+		while (map[y][x])
 		{
-			if (size < ft_square_maker(map, end, x, y))
+			stock = ft_square_maker(map, x, y);
+			if (size < stock)
 			{
-				size = ft_square_maker(map, end, x, y);
+				size = stock;
 				i = x;
 				j = y;
 			}
@@ -66,7 +65,7 @@ void	ft_scanner(char **map, int x, int y)
 		}
 		y++;
 	}
-	ft_print_map(map, i, j, size, end);
+	ft_print_map(map, i, j, size);
 }
 
 char	**ft_set_map(char *src, char **cpy)
@@ -98,10 +97,10 @@ void	bsq(char *str, int x, int y)
 	int	i;
 
 	i = 0;
-	map = (char**)malloc(sizeof(map) * y);
-	while (i < y)
+	map = (char**)malloc(sizeof(char*) * (y + 1));
+	while (i < (y + 1))
 	{
-		map[i] = (char*)malloc(sizeof(*map) * x);
+		map[i] = (char*)malloc(sizeof(char) * (x + 1));
 		i++;
 	}
 	map = ft_set_map(str, map);
