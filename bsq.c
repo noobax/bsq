@@ -6,7 +6,7 @@
 /*   By: noobax <nerdz78@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/01 22:45:29 by noobax            #+#    #+#             */
-/*   Updated: 2016/04/19 17:43:37 by noobax           ###   ########.fr       */
+/*   Updated: 2016/04/19 18:32:45 by noobax           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int	ft_square_maker(char **str, int i, int j)
 	x = i;
 	y = j;
 	size = 0;
-	while (*str[y] && str[y][x + 2] && str[y][x] != 'o')
+	while (*str[y + 1] && str[y][x + 2] && str[y][x] != 'o')
 	{
 		x = i + size;
 		y = j;
-		while (x != i && *str[y] && str[y][x + 2] && str[y][x] != 'o')
+		while (x != i && *str[y + 1] && 
+			str[y][x + 2] && str[y][x] != 'o')
 		{
 			if (y < (j + size))
 				y++;
