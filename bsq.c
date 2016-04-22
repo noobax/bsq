@@ -6,7 +6,7 @@
 /*   By: noobax <nerdz78@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/01 22:45:29 by noobax            #+#    #+#             */
-/*   Updated: 2016/04/22 09:25:04 by noobax           ###   ########.fr       */
+/*   Updated: 2016/04/22 17:25:17 by noobax           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ char	**ft_set_map(char *src, char **cpy)
 	{
 		buf[0] = *src++;
 		buf[1] = '\0';
-		ft_putchar(buf[0]);
 		cpy[y][x] = buf[0];
 		x++;
 		if (buf[0] == '\n')
