@@ -6,7 +6,7 @@
 /*   By: noobax <nerdz78@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/01 22:45:29 by noobax            #+#    #+#             */
-/*   Updated: 2016/04/19 18:32:45 by noobax           ###   ########.fr       */
+/*   Updated: 2016/04/22 09:25:04 by noobax           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,18 @@ int	ft_square_maker(char **str, int i, int j)
 	x = i;
 	y = j;
 	size = 0;
-	while (*str[y + 1] && str[y][x + 2] && str[y][x] != 'o')
+	while (str[y][x] != '\n' && str[y][x] != 'o' && *str[y])
 	{
-		x = i + size;
-		y = j;
-		while (x != i && *str[y + 1] && 
-			str[y][x + 2] && str[y][x] != 'o')
+		if (x == i && y == j + size)
 		{
-			if (y < (j + size))
-				y++;
-			else
-				x--;
-		}
-		if (str[y][x] != 'o')
 			size++;
+			x = i + size;
+			y = j;
+		}
+		else if (y < (j + size))
+			y++;
+		else
+			x--;
 	}
 	return(size);
 }
@@ -47,13 +45,12 @@ void	ft_scanner(char **map, int x, int y)
 	int	size;
 	int	stock;
 
-	stock = 0;
 	size = 0;
 	y = 0;
 	while (*map[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (map[y][x + 1])
 		{
 			stock = ft_square_maker(map, x, y);
 			if (size < stock)
@@ -66,7 +63,7 @@ void	ft_scanner(char **map, int x, int y)
 		}
 		y++;
 	}
-	ft_print_map(map, i, j, size);
+		ft_print_map(map, i, j, size);
 }
 
 char	**ft_set_map(char *src, char **cpy)
@@ -82,6 +79,7 @@ char	**ft_set_map(char *src, char **cpy)
 	{
 		buf[0] = *src++;
 		buf[1] = '\0';
+		ft_putchar(buf[0]);
 		cpy[y][x] = buf[0];
 		x++;
 		if (buf[0] == '\n')
@@ -89,6 +87,7 @@ char	**ft_set_map(char *src, char **cpy)
 		if (buf[0] == '\n')
 			x = 0;
 	}
+	x = 0;
 	return(cpy);
 }
 
@@ -98,8 +97,8 @@ void	bsq(char *str, int x, int y)
 	int	i;
 
 	i = 0;
-	map = (char**)malloc(sizeof(char*) * (y + 1));
-	while (i < (y + 1))
+	map = (char**)malloc(sizeof(char*) * (y + 10));
+	while (i < (y + 10))
 	{
 		map[i] = (char*)malloc(sizeof(char) * (x + 1));
 		i++;
