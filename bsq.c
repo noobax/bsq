@@ -6,7 +6,7 @@
 /*   By: noobax <nerdz78@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/01 22:45:29 by noobax            #+#    #+#             */
-/*   Updated: 2016/04/22 17:25:17 by noobax           ###   ########.fr       */
+/*   Updated: 2016/04/23 11:20:56 by noobax           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	bsq(char *str, int x, int y)
 	map = (char**)malloc(sizeof(char*) * (y + 10));
 	while (i < (y + 10))
 	{
-		map[i] = (char*)malloc(sizeof(char) * (x + 1));
+		map[i] = (char*)malloc(sizeof(char) * (x + 2));
 		i++;
 	}
 	map = ft_set_map(str, map);
